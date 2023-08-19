@@ -1,4 +1,13 @@
 {
+  "name": "unicode_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest __tests__ --coverage --verbose",
+    "open": "open index.html"
+  },
+  
   "dependencies": {
     "jest": "^29.6.2"
   }
