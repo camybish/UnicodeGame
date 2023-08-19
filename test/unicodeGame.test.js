@@ -15,22 +15,31 @@ describe('UnicodeGame', () => {
 
     it("toggle one 4Bit switch to reach 8", () => {
         const uniCode = new UnicodeGame(8);
-        uniCode.toggle4Bit(4);
+        uniCode.toggleByte(4);
         expect(uniCode.submit()).toBe("Correct!")
     })
 
     it("toggle two 4Bit switches to reach 12", () => {
         const uniCode = new UnicodeGame(12);
-        uniCode.toggle4Bit(3);
-        uniCode.toggle4Bit(4);
+        uniCode.toggleByte(3);
+        uniCode.toggleByte(4);
         expect(uniCode.submit()).toBe("Correct!")
     })
 
     it("toggle 4Bit incorrectly", () => {
         const uniCode = new UnicodeGame(12);
-        uniCode.toggle4Bit(3);
-        uniCode.toggle4Bit(4);
-        uniCode.toggle4Bit(4);
-        expect(uniCode.submit()).toBe("Try Again")
+        uniCode.toggleByte(3);
+        uniCode.toggleByte(4);
+        uniCode.toggleByte(4);
+        expect(uniCode.submit()).toBe("Try again, you reached 4")
+    })
+
+    it("toggle 8Bit to 180", () => {
+        const uniCode = new UnicodeGame(180);
+        uniCode.toggleByte(3);
+        uniCode.toggleByte(5);
+        uniCode.toggleByte(6);
+        uniCode.toggleByte(8);
+        expect(uniCode.submit()).toBe("Correct!")
     })
 })
