@@ -1,4 +1,7 @@
-const UnicodeGame = require('./lib/unicodeGame');
+const Display = require('./lib/display');
+const unicodeGame = require('./lib/unicodeGame');
 
-const unicode = new UnicodeGame();
-game.playMusic();
+const unicode = new unicodeGame(50);
+const display = new Display(unicode);
+
+display.newNumber()
