@@ -1,8 +1,8 @@
 # UnicodeGame
 
-## So how does it work?
+So how does it work?
 
-### UnicodeGame - Numbers
+## UnicodeGame - Numbers
 
 You start with a number and you need to add up the numbers you have to reach it
 
@@ -13,11 +13,11 @@ For anyone who's good at maths you may have noticed somethings:
 - These numbers are powers of 2
 - These numbers also represent the possible combinations of a Byte, how all data is saved and processed
 
-#### The rules
+### The rules
 
 Chose whatever numbers you like to sum up to achieve the goal number. You can use any number once.
 
-### UnicodeGame - Typing Trouble
+## UnicodeGame - Typing Trouble
 
 !!!!WIP!!!!
 
