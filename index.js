@@ -5,3 +5,4 @@ const unicode = new unicodeGame(50);
 const display = new Display(unicode);
 
 display.newNumber()
+display.numberGoal()
