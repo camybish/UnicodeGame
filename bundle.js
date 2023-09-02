@@ -12,13 +12,16 @@
           this.game = game;
           this.mainEl = document.querySelector("#main-container");
         }
-        newNumber() {
-          let nnd = document.querySelector("#numGoal");
-          nnd.innerHTML = this.game.newNumber;
-        }
         numberGoal() {
-          let ngd = document.querySelector(".numberGoalDisplay");
-          ngd.innerHTML = this.game.numberGoal;
+          let nnd = document.querySelector("#numGoal");
+          nnd.innerHTML = this.game.numberGoal;
+        }
+        newNumber() {
+          let ngd = document.querySelector("#currentNum");
+          ngd.innerHTML = this.game.newNumber;
+        }
+        test() {
+          document.querySelector("#test").textContent = this.game.test;
         }
       };
       module.exports = display2;
@@ -30,6 +33,7 @@
     "lib/unicodeGame.js"(exports, module) {
       var unicodeGame2 = class {
         constructor(num) {
+          this.test = "hello, world";
           this.numberGoal = num;
           this.a = false;
           this.b = false;
@@ -146,4 +150,5 @@
   var unicode = new unicodeGame(50);
   var display = new Display(unicode);
   display.newNumber();
+  display.numberGoal();
 })();
