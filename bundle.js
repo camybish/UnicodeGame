@@ -7,7 +7,7 @@
   // lib/display.js
   var require_display = __commonJS({
     "lib/display.js"(exports, module) {
-      var display2 = class {
+      var display = class {
         constructor(game) {
           this.game = game;
           this.numberGoalDisplay = document.querySelector("#numGoal");
@@ -35,15 +35,37 @@
           });
         }
       };
-      module.exports = display2;
+      module.exports = display;
+    }
+  });
+
+  // lib/render.js
+  var require_render = __commonJS({
+    "lib/render.js"(exports, module) {
+      var render = {
+        updater: (game) => {
+          let switches = document.querySelector("#switch1");
+          switches.addEventListener("change", function() {
+            if (switches.checked) {
+              game.toggleByte(1);
+              game.calc8Bit();
+              console.log(this.game.a);
+            }
+          });
+        },
+        dynamicNumbers: (game) => {
+        }
+      };
+      module.exports = render;
     }
   });
 
   // lib/unicodeGame.js
   var require_unicodeGame = __commonJS({
     "lib/unicodeGame.js"(exports, module) {
+      var render = require_render();
       var unicodeGame2 = class {
-        constructor(num, display2) {
+        constructor(num) {
           this.test = "hello, world";
           this.numberGoal = num;
           this.a = false;
@@ -57,8 +79,18 @@
           this.input4Bit;
           this.input8Bit;
           this.newNumber = num;
-          this.display = display2;
+          this.switch1Checker = document.getElementById("switch1");
+          this.switch1Checker.addEventListener("click", this.callUpdater.bind(this));
         }
+        /*    this.myData = 0;
+          this.button = document.getElementById('myButton');
+          this.button.addEventListener('click', this.handleButtonClick.bind(this));
+        }
+        
+        handleButtonClick(event) {
+            this.myData += 1;
+            console.log(`Button clicked ${this.myData} times`);
+          } */
         inBinary4Bit(a, b, c, d) {
           if (a > 1) {
             return "input either a zero or one";
@@ -141,6 +173,9 @@
         checkNewNumber() {
           return this.newNumber;
         }
+        callUpdater() {
+          render.updater(this);
+        }
         submit() {
           if (this.numberGoal <= 16) {
             this.calc4Bit();
@@ -159,6 +194,5 @@
   // index.js
   var Display = require_display();
   var unicodeGame = require_unicodeGame();
-  var display = new Display();
-  var unicode = new unicodeGame(50, display);
+  var unicode = new unicodeGame(50);
 })();
