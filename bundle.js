@@ -13,7 +13,6 @@
           this.numberGoalDisplay = document.querySelector("#numGoal");
           this.currentNumDisplay = document.querySelector("#currentNum");
           this.mainEl = document.querySelector("#main-container");
-          this.updater();
         }
         numberGoal() {
           this.numberGoalDisplay.innerHTML = this.game.numberGoal;
@@ -44,7 +43,7 @@
   var require_unicodeGame = __commonJS({
     "lib/unicodeGame.js"(exports, module) {
       var unicodeGame2 = class {
-        constructor(num) {
+        constructor(num, display2) {
           this.test = "hello, world";
           this.numberGoal = num;
           this.a = false;
@@ -58,6 +57,7 @@
           this.input4Bit;
           this.input8Bit;
           this.newNumber = num;
+          this.display = display2;
         }
         inBinary4Bit(a, b, c, d) {
           if (a > 1) {
@@ -159,8 +159,6 @@
   // index.js
   var Display = require_display();
   var unicodeGame = require_unicodeGame();
-  var unicode = new unicodeGame(50);
-  var display = new Display(unicode);
-  display.newNumber();
-  display.numberGoal();
+  var display = new Display();
+  var unicode = new unicodeGame(50, display);
 })();
