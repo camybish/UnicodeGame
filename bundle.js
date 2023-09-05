@@ -10,18 +10,30 @@
       var display2 = class {
         constructor(game) {
           this.game = game;
+          this.numberGoalDisplay = document.querySelector("#numGoal");
+          this.currentNumDisplay = document.querySelector("#currentNum");
           this.mainEl = document.querySelector("#main-container");
+          this.updater();
         }
         numberGoal() {
-          let nnd = document.querySelector("#numGoal");
-          nnd.innerHTML = this.game.numberGoal;
+          this.numberGoalDisplay.innerHTML = this.game.numberGoal;
         }
         newNumber() {
-          let ngd = document.querySelector("#currentNum");
-          ngd.innerHTML = this.game.newNumber;
+          this.currentNumDisplay.innerHTML = this.game.newNumber;
         }
         test() {
           document.querySelector("#test").textContent = this.game.test;
+        }
+        updater() {
+          let switches = document.querySelector("#switch1");
+          switches.addEventListener("change", function() {
+            if (switches.checked) {
+              this.game.toggleByte(1);
+              this.numberGoal();
+              this.game.calc8Bit();
+              console.log(this.game.a);
+            }
+          });
         }
       };
       module.exports = display2;
@@ -45,7 +57,7 @@
           this.h = false;
           this.input4Bit;
           this.input8Bit;
-          this.newNumber;
+          this.newNumber = num;
         }
         inBinary4Bit(a, b, c, d) {
           if (a > 1) {
