@@ -48,12 +48,15 @@
           switches.addEventListener("change", function() {
             if (switches.checked) {
               game.toggleByte(1);
-              game.calc8Bit();
-              console.log(this.game.a);
+              game.calc8bit();
             }
           });
         },
         dynamicNumbers: (game) => {
+          let numberGoalDisplay = document.querySelector("#numGoal");
+          numberGoalDisplay.textContent = game.numberGoal;
+          let currentNumDisplay = document.querySelector("#currentNum");
+          currentNumDisplay.textContent = game.newNumber;
         }
       };
       module.exports = render;
@@ -78,6 +81,7 @@
           this.h = false;
           this.input4Bit;
           this.input8Bit;
+          render.dynamicNumbers(this);
           this.newNumber = num;
           this.switch1Checker = document.getElementById("switch1");
           this.switch1Checker.addEventListener("click", this.callUpdater.bind(this));
