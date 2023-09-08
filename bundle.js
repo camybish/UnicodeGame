@@ -57,6 +57,7 @@
           numberGoalDisplay.textContent = game.numberGoal;
           let currentNumDisplay = document.querySelector("#currentNum");
           currentNumDisplay.textContent = game.newNumber;
+          console.log(currentNumDisplay.textContent);
         }
       };
       module.exports = render;
@@ -81,8 +82,8 @@
           this.h = false;
           this.input4Bit;
           this.input8Bit;
-          render.dynamicNumbers(this);
           this.newNumber = num;
+          render.dynamicNumbers(this);
           this.switch1Checker = document.getElementById("switch1");
           this.switch1Checker.addEventListener("click", this.callUpdater.bind(this));
         }
@@ -138,7 +139,6 @@
           let switch7 = this.g ? 64 : 0;
           let switch8 = this.h ? 128 : 0;
           this.input8Bit = switch1 + switch2 + switch3 + switch4 + switch5 + switch6 + switch7 + switch8;
-          console.log(switch8);
           this.newNumber = this.numberGoal - this.input8Bit;
         }
         toggleByte(toggle) {
@@ -179,6 +179,7 @@
         }
         callUpdater() {
           render.updater(this);
+          render.dynamicNumbers(this);
         }
         submit() {
           if (this.numberGoal <= 16) {
