@@ -42,9 +42,10 @@
   // lib/render.js
   var require_render = __commonJS({
     "lib/render.js"(exports, module) {
+      var switchArr = ["#switch1", "#switch2", "#switch3", "#switch4", "#switch5", "#switch6", "#switch7", "#switch8"];
       var render = {
         updater: (game) => {
-          exports.switches = document.querySelector("#switch1");
+          exports.switches = document.querySelector(switchArr[0]);
           if (exports.switches !== null) {
             render.callToggleByte(game);
           }
