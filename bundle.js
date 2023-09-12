@@ -45,19 +45,31 @@
       var render = {
         updater: (game) => {
           let switches = document.querySelector("#switch1");
-          switches.addEventListener("change", function() {
-            if (switches.checked) {
-              game.toggleByte(1);
-              game.calc8bit();
-            }
-          });
+          if (switches !== null) {
+            switches.addEventListener("change", function() {
+              if (switches.checked) {
+                game.toggleByte(1);
+                game.calc8bit();
+                console.log(game.newNumber);
+              } else {
+                game.toggleByte(1);
+                game.calc8bit();
+                console.log(game.newNumber);
+              }
+              render.dynamicNumbers(game);
+            });
+          }
         },
         dynamicNumbers: (game) => {
           let numberGoalDisplay = document.querySelector("#numGoal");
-          numberGoalDisplay.textContent = game.numberGoal;
+          if (numberGoalDisplay !== null) {
+            numberGoalDisplay.textContent = game.numberGoal;
+          }
           let currentNumDisplay = document.querySelector("#currentNum");
-          currentNumDisplay.textContent = game.newNumber;
-          console.log(currentNumDisplay.textContent);
+          if (currentNumDisplay !== null) {
+            currentNumDisplay.textContent = game.newNumber;
+            console.log(currentNumDisplay.textContent);
+          }
         }
       };
       module.exports = render;
@@ -84,8 +96,16 @@
           this.input8Bit;
           this.newNumber = num;
           render.dynamicNumbers(this);
+          this.switchChecker();
+        }
+        switchChecker() {
           this.switch1Checker = document.getElementById("switch1");
-          this.switch1Checker.addEventListener("click", this.callUpdater.bind(this));
+          if (this.switch1Checker !== null) {
+            this.switch1Checker.addEventListener(
+              "click",
+              this.callUpdater.bind(this)
+            );
+          }
         }
         /*    this.myData = 0;
           this.button = document.getElementById('myButton');
@@ -125,7 +145,6 @@
           let switch2 = this.b ? 2 : 0;
           let switch3 = this.c ? 4 : 0;
           let switch4 = this.d ? 8 : 0;
-          console.log("this.d =" + this.d);
           this.input4Bit = switch1 + switch2 + switch3 + switch4;
           this.newNumber = this.numberGoal - this.input4Bit;
         }
@@ -187,7 +206,6 @@
             return this.input4Bit === this.numberGoal ? "Correct!" : `Try again, you reached ${this.input4Bit}`;
           } else {
             this.calc8bit();
-            console.log(this.input8Bit);
             return this.input8Bit === this.numberGoal ? "Correct!" : `Try again, you reached ${this.newNumber}`;
           }
         }
