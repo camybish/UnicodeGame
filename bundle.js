@@ -44,20 +44,9 @@
     "lib/render.js"(exports, module) {
       var render = {
         updater: (game) => {
-          let switches = document.querySelector("#switch1");
-          if (switches !== null) {
-            switches.addEventListener("change", function() {
-              if (switches.checked) {
-                game.toggleByte(1);
-                game.calc8bit();
-                console.log(game.newNumber);
-              } else {
-                game.toggleByte(1);
-                game.calc8bit();
-                console.log(game.newNumber);
-              }
-              render.dynamicNumbers(game);
-            });
+          exports.switches = document.querySelector("#switch1");
+          if (exports.switches !== null) {
+            render.callToggleByte(game);
           }
         },
         dynamicNumbers: (game) => {
@@ -68,7 +57,21 @@
           let currentNumDisplay = document.querySelector("#currentNum");
           if (currentNumDisplay !== null) {
             currentNumDisplay.textContent = game.newNumber;
-            console.log(currentNumDisplay.textContent);
+          }
+        },
+        callToggleByte: (game) => {
+          if (exports.switches.checked) {
+            console.log("switch is checked");
+            game.toggleByte(1);
+            game.calc8bit();
+            console.log(game.newNumber);
+            render.dynamicNumbers(game);
+          } else {
+            console.log("switch is not checked");
+            game.toggleByte(1);
+            game.calc8bit();
+            console.log(game.newNumber);
+            render.dynamicNumbers(game);
           }
         }
       };
@@ -102,6 +105,10 @@
           this.switch1Checker = document.getElementById("switch1");
           if (this.switch1Checker !== null) {
             this.switch1Checker.addEventListener(
+              "click",
+              this.callUpdater.bind(this)
+            );
+            this.switch1Checker.removeEventListener(
               "click",
               this.callUpdater.bind(this)
             );

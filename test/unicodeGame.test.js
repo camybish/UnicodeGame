@@ -55,4 +55,13 @@ describe('UniCode Web Functions', () => {
         uniCode.calc8bit();
         expect(uniCode.newNumber).toEqual(49)
     })
+
+    it('returns 49 when switch 1 is flipped', () => {
+        const uniCode = new UnicodeGame(50);
+        uniCode.toggleByte(1);
+        uniCode.calc8bit();
+        uniCode.toggleByte(1);
+        uniCode.calc8bit();
+        expect(uniCode.newNumber).toEqual(50)
+    })
 })
