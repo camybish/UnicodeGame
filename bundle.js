@@ -24,9 +24,9 @@
           document.querySelector("#test").textContent = this.game.test;
         }
         updater() {
-          let switches = document.querySelector("#switch1");
-          switches.addEventListener("change", function() {
-            if (switches.checked) {
+          let switches2 = document.querySelector("#switch1");
+          switches2.addEventListener("change", function() {
+            if (switches2.checked) {
               this.game.toggleByte(1);
               this.numberGoal();
               this.game.calc8Bit();
@@ -42,13 +42,15 @@
   // lib/render.js
   var require_render = __commonJS({
     "lib/render.js"(exports, module) {
-      var switchArr = ["#switch1", "#switch2", "#switch3", "#switch4", "#switch5", "#switch6", "#switch7", "#switch8"];
       var render = {
         updater: (game) => {
-          exports.switches = document.querySelector(switchArr[0]);
-          if (exports.switches !== null) {
-            render.callToggleByte(game);
+          function eachSwitch(index, arr) {
+            switches = document.querySelector(arr[index]);
+            if (switches !== null) {
+              render.callToggleByte(game, switches, index);
+            }
           }
+          game.switchArr.forEach(eachSwitch);
         },
         dynamicNumbers: (game) => {
           let numberGoalDisplay = document.querySelector("#numGoal");
@@ -60,16 +62,16 @@
             currentNumDisplay.textContent = game.newNumber;
           }
         },
-        callToggleByte: (game) => {
-          if (exports.switches.checked) {
+        callToggleByte: (game, switches2, index) => {
+          if (switches2.checked) {
             console.log("switch is checked");
-            game.toggleByte(1);
+            game.toggleByte(index + 1);
             game.calc8bit();
             console.log(game.newNumber);
             render.dynamicNumbers(game);
           } else {
             console.log("switch is not checked");
-            game.toggleByte(1);
+            game.toggleByte(index + 1);
             game.calc8bit();
             console.log(game.newNumber);
             render.dynamicNumbers(game);
@@ -100,19 +102,29 @@
           this.input8Bit;
           this.newNumber = num;
           render.dynamicNumbers(this);
+          this.switchArr = ["switch1", "switch2", "switch3", "switch4", "switch5", "switch6", "switch7", "switch8"];
           this.switchChecker();
         }
         switchChecker() {
-          this.switch1Checker = document.getElementById("switch1");
-          if (this.switch1Checker !== null) {
-            this.switch1Checker.addEventListener(
-              "click",
-              this.callUpdater.bind(this)
-            );
-            this.switch1Checker.removeEventListener(
-              "click",
-              this.callUpdater.bind(this)
-            );
+          const switchCheckerArr = [];
+          for (var i = 0; i < this.switchArr.length; i++) {
+            var elementId = this.switchArr[i];
+            var selectedElement = document.querySelector("#" + elementId);
+            if (selectedElement !== null) {
+              switchCheckerArr.push(selectedElement);
+            }
+          }
+          for (var i = 0; i < switchCheckerArr.length; i++) {
+            if (switchCheckerArr[i] !== null) {
+              switchCheckerArr[i].addEventListener(
+                "click",
+                this.callUpdater.bind(this, i)
+              );
+              switchCheckerArr[i].removeEventListener(
+                "click",
+                this.callUpdater.bind(this, i)
+              );
+            }
           }
         }
         /*    this.myData = 0;
@@ -204,8 +216,8 @@
         checkNewNumber() {
           return this.newNumber;
         }
-        callUpdater() {
-          render.updater(this);
+        callUpdater(index) {
+          render.updater(this, index);
           render.dynamicNumbers(this);
         }
         submit() {
