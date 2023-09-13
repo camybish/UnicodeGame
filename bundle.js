@@ -73,6 +73,8 @@
             console.log(game.newNumber);
             render.dynamicNumbers(game);
           }
+        },
+        winState: (game) => {
         }
       };
       module.exports = render;
@@ -238,5 +240,8 @@
   // index.js
   var Display = require_display();
   var unicodeGame = require_unicodeGame();
-  var unicode = new unicodeGame(111);
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  var unicode = new unicodeGame(getRandomInt(255));
 })();
