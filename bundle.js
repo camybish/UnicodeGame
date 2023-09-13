@@ -44,14 +44,10 @@
     "lib/render.js"(exports, module) {
       var render = {
         updater: (game, index) => {
-          function eachSwitch(element, index2) {
-            switches = document.querySelector("#" + element);
-            if (switches !== null) {
-              render.callToggleByte(game, switches, index2);
-              console.log("Byte has been toggled");
-            }
+          switches = document.querySelector("#" + game.switchArr[index]);
+          if (switches !== null) {
+            render.callToggleByte(game, switches, index);
           }
-          game.switchArr.forEach(eachSwitch, index);
         },
         dynamicNumbers: (game) => {
           let numberGoalDisplay = document.querySelector("#numGoal");
@@ -242,5 +238,5 @@
   // index.js
   var Display = require_display();
   var unicodeGame = require_unicodeGame();
-  var unicode = new unicodeGame(50);
+  var unicode = new unicodeGame(111);
 })();
