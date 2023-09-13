@@ -43,14 +43,15 @@
   var require_render = __commonJS({
     "lib/render.js"(exports, module) {
       var render = {
-        updater: (game) => {
-          function eachSwitch(index, arr) {
-            switches = document.querySelector(arr[index]);
+        updater: (game, index) => {
+          function eachSwitch(index2, arr) {
+            switches = document.querySelector(arr[index2]);
             if (switches !== null) {
-              render.callToggleByte(game, switches, index);
+              render.callToggleByte(game, switches, index2);
+              console.log("Byte has been toggled");
             }
           }
-          game.switchArr.forEach(eachSwitch);
+          game.switchArr.forEach(eachSwitch, index);
         },
         dynamicNumbers: (game) => {
           let numberGoalDisplay = document.querySelector("#numGoal");
@@ -120,6 +121,10 @@
                 "click",
                 this.callUpdater.bind(this, i)
               );
+            }
+          }
+          for (var i = 0; i < switchCheckerArr.length; i++) {
+            if (switchCheckerArr[i] !== null) {
               switchCheckerArr[i].removeEventListener(
                 "click",
                 this.callUpdater.bind(this, i)
