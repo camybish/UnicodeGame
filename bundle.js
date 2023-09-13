@@ -44,8 +44,8 @@
     "lib/render.js"(exports, module) {
       var render = {
         updater: (game, index) => {
-          function eachSwitch(index2, arr) {
-            switches = document.querySelector(arr[index2]);
+          function eachSwitch(element, index2) {
+            switches = document.querySelector("#" + element);
             if (switches !== null) {
               render.callToggleByte(game, switches, index2);
               console.log("Byte has been toggled");
@@ -108,14 +108,14 @@
         }
         switchChecker() {
           const switchCheckerArr = [];
-          for (var i = 0; i < this.switchArr.length; i++) {
-            var elementId = this.switchArr[i];
-            var selectedElement = document.querySelector("#" + elementId);
+          for (let i = 0; i < this.switchArr.length; i++) {
+            let elementId = this.switchArr[i];
+            let selectedElement = document.querySelector("#" + elementId);
             if (selectedElement !== null) {
               switchCheckerArr.push(selectedElement);
             }
           }
-          for (var i = 0; i < switchCheckerArr.length; i++) {
+          for (let i = 0; i < switchCheckerArr.length; i++) {
             if (switchCheckerArr[i] !== null) {
               switchCheckerArr[i].addEventListener(
                 "click",
@@ -123,7 +123,7 @@
               );
             }
           }
-          for (var i = 0; i < switchCheckerArr.length; i++) {
+          for (let i = 0; i < switchCheckerArr.length; i++) {
             if (switchCheckerArr[i] !== null) {
               switchCheckerArr[i].removeEventListener(
                 "click",
