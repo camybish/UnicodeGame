@@ -9,13 +9,28 @@ You start with a number and you need to add up the numbers you have to reach it
 Those numbers are: 
 1,2,4,8,16,32,64,128
 
-For anyone who's good at maths you may have noticed somethings:
+For anyone who's good at maths, you may have noticed some things:
 - These numbers are powers of 2
 - These numbers also represent the possible combinations of a Byte, how all data is saved and processed
 
 ### The rules
 
-Chose whatever numbers you like to sum up to achieve the goal number. You can use any number once.
+When the page loads, It will give you a Number Goal to reach. 
+Tick the numbers below it to add up to reach that goal, the Current Number will help you reach that number.
+Have fun!
+
+### How to play
+
+(Tested and works in VSCode on Windows)
+
+1. Clone this repository into your chosen IDE
+2. Run the following commands (Make sure you have Node/NPM installed prior)
+```
+npm install
+npm run build
+npm run open (open index.html if on mac)
+```
+
 
 ## UnicodeGame - Typing Trouble
 
