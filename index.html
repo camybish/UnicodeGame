@@ -2,53 +2,62 @@
 <html>
     <head>
         <title>Unicode Game</title>
-        <!--<link rel="stylesheet" href="./styles/styles.css">-->
+        <link rel="stylesheet" href="./styles/styles.css">
     </head>
     <body>
-        <h1>The Unicode Game <span id="test"></h1>
+        <h1 class="header">The Unicode Game </h1>
         
-    <br><br>
+    
     <div class="mainContainer">
-        <div class="numberGoalDisplay">Number Goal:</div>
-        <span id="numGoal">0</span>
-        <div class="newNumberDisplay"> Current Number:</div>
-        <span id="currentNum">0</span>
+        <div class="numberGoalDisplay">Number Goal: <span id="numGoal">0</span></div>
+        <div class="newNumberDisplay"> Current Number: <span id="currentNum">0</span></div>
     </div>
 
-    <br><br>
-    <h2> &nbsp; 1 &nbsp; 2 &nbsp; 4 &nbsp; 8 &nbsp; 16 &nbsp; 32 &nbsp; 64 &nbsp; 128</h2>
-    <label class="switch">
+    <br>
+    <span class="victory"></span>
+    <h3 class="labels"> <div>1</div> <div>2</div> <div>4</div> <div>8</div> <div>16</div> <div>32</div> <div>64</div> <div>128</div></h2>
+
+    <div class="flex-container">
+        <div><label class="switch">
         <input type="checkbox" id="switch1">
         <span class="slider1"></span>  &nbsp;
-    </label>
-    <label class="switch">
+        </label></div>
+
+        <div><label class="switch">
         <input type="checkbox" id="switch2">
         <span class="slider2"></span>  &nbsp;
-    </label>
-    <label class="switch">
+        </label></div>
+
+        <div><label class="switch">
         <input type="checkbox" id="switch3">
         <span class="slider3"></span>  &nbsp;
-    </label>
-    <label class="switch">
+        </label></div>
+
+        <div><label class="switch">
         <input type="checkbox" id="switch4">
         <span class="slider4"></span>  &nbsp;
-    </label>
-    <label class="switch">
+        </label></div>
+        
+        <div><label class="switch">
         <input type="checkbox" id="switch5">
         <span class="slider5"></span>  &nbsp;
-    </label>
-    <label class="switch">
+        </label></div>
+        
+        <div><label class="switch">
         <input type="checkbox" id="switch6">
         <span class="slider6"></span>  &nbsp;
-    </label>
-    <label class="switch">
+        </label></div>
+        
+        <div><label class="switch">
         <input type="checkbox" id="switch7">
         <span class="slider7"></span>  &nbsp;
-    </label>
-    <label class="switch">
+        </label></div>
+        
+        <div><label class="switch">
         <input type="checkbox" id="switch8">
         <span class="slider8"></span>  &nbsp;
-    </label>
+        </label></div>
+    </div>
 
     <script type="text/javascript" src="bundle.js"></script>
     </body>

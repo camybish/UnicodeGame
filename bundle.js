@@ -74,7 +74,15 @@
             render.dynamicNumbers(game);
           }
         },
-        winState: (game) => {
+        winState: () => {
+          const victory = document.querySelector(".victory");
+          victory.innerHTML = "You win! &nbsp;&nbsp;&nbsp;";
+          const para = document.createElement("button");
+          para.innerText = "Play Again";
+          victory.appendChild(para);
+          para.addEventListener("click", function() {
+            location.reload();
+          });
         }
       };
       module.exports = render;
@@ -182,6 +190,9 @@
           let switch8 = this.h ? 128 : 0;
           this.input8Bit = switch1 + switch2 + switch3 + switch4 + switch5 + switch6 + switch7 + switch8;
           this.newNumber = this.numberGoal - this.input8Bit;
+          if (this.newNumber === 0) {
+            render.winState();
+          }
         }
         toggleByte(toggle) {
           switch (toggle) {
