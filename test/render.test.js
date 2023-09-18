@@ -1,10 +1,38 @@
-const render = require('../lib/render')
-const unicodeGame = require('../lib/unicodeGame')
+/**
+ * @jest-environment jsdom
+ */
+
+const unicodeGame = require('../lib/unicodeGame');
+const render = require('../lib/render');
+const fs = require("fs");
 
 describe('Unicode Integration', () => {
-    it('ticks switch 1', () => {
+    beforeEach(() => {
+        document.body.innerHTML = fs.readFileSync('./index.html');
+    });
+    
+    it('calls callToggleByte when switch is found', () => {
+        // MOCKING CALLTOGGLEBYTE
+        //const mockCallToggleByte = jest.fn();
+        //game.render.callToggleByte = mockCallToggleByte;
+
+        //   :\
+        //const switchesElement = document.createElement('div');
+        //switchesElement.id = 'switch1';
         const uniCode = new unicodeGame(50)
-        
-        expect("0").toBe("0")
+        const switch1 = document.querySelector("#switch1")
+        switch1.checked
+        render.updater(uniCode, 0)
+
+        expect(document.querySelector(".newNumberDisplay").textContent).toBe("Current Number: 49")
+    });
+
+    it('ensures callToggleByte works', () => {
+        const uniCode = new unicodeGame(50)
+        const switch1 = document.querySelector("#switch1")
+        switch1.checked
+        render.callToggleByte(uniCode, switch1, 0)
+
+        expect(document.querySelector(".newNumberDisplay").textContent).toBe("Current Number: 49")
     })
 })

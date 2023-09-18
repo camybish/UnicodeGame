@@ -10,6 +10,11 @@ describe('UnicodeGame', () => {
         expect(uniCode.inBinary4Bit(0,0,1,1)).toBe("Correct!")
     })
 
+    it("checks test state returns try again", () => {
+        const uniCode = new UnicodeGame(12);
+        expect(uniCode.inBinary4Bit(0,1,1,1)).toBe("Try Again")
+    })
+
     it("raises error if 'inBinary4Bit inputs are bigger than 1", () => {
         const uniCode = new UnicodeGame(12);
         const error = uniCode.inBinary4Bit(0,0,2,0)
@@ -44,6 +49,7 @@ describe('UnicodeGame', () => {
         uniCode.toggleByte(5);
         uniCode.toggleByte(6);
         uniCode.toggleByte(8);
+        
         expect(uniCode.submit()).toBe("Correct!")
     })
 })
