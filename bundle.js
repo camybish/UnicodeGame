@@ -252,7 +252,7 @@
   var Display = require_display();
   var unicodeGame = require_unicodeGame();
   function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+    return 1 + Math.floor(Math.random() * max);
   }
-  var unicode = new unicodeGame(getRandomInt(255));
+  var unicode = new unicodeGame(getRandomInt(254));
 })();
