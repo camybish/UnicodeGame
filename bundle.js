@@ -4,41 +4,6 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // lib/display.js
-  var require_display = __commonJS({
-    "lib/display.js"(exports, module) {
-      var display = class {
-        constructor(game) {
-          this.game = game;
-          this.numberGoalDisplay = document.querySelector("#numGoal");
-          this.currentNumDisplay = document.querySelector("#currentNum");
-          this.mainEl = document.querySelector("#main-container");
-        }
-        numberGoal() {
-          this.numberGoalDisplay.innerHTML = this.game.numberGoal;
-        }
-        newNumber() {
-          this.currentNumDisplay.innerHTML = this.game.newNumber;
-        }
-        test() {
-          document.querySelector("#test").textContent = this.game.test;
-        }
-        updater() {
-          let switches2 = document.querySelector("#switch1");
-          switches2.addEventListener("change", function() {
-            if (switches2.checked) {
-              this.game.toggleByte(1);
-              this.numberGoal();
-              this.game.calc8Bit();
-              console.log(this.game.a);
-            }
-          });
-        }
-      };
-      module.exports = display;
-    }
-  });
-
   // lib/render.js
   var require_render = __commonJS({
     "lib/render.js"(exports, module) {
@@ -61,16 +26,12 @@
         },
         callToggleByte: (game, switches2, index) => {
           if (switches2.checked) {
-            console.log("switch is checked");
             game.toggleByte(index + 1);
             game.calc8bit();
-            console.log(game.newNumber);
             render.dynamicNumbers(game);
           } else {
-            console.log("switch is not checked");
             game.toggleByte(index + 1);
             game.calc8bit();
-            console.log(game.newNumber);
             render.dynamicNumbers(game);
           }
         },
@@ -190,7 +151,8 @@
           let switch8 = this.h ? 128 : 0;
           this.input8Bit = switch1 + switch2 + switch3 + switch4 + switch5 + switch6 + switch7 + switch8;
           this.newNumber = this.numberGoal - this.input8Bit;
-          if (this.newNumber === 0) {
+          let selectedElement = document.querySelector(".mainContainer");
+          if (this.newNumber === 0 && selectedElement !== null) {
             render.winState();
           }
         }
@@ -249,7 +211,6 @@
   });
 
   // index.js
-  var Display = require_display();
   var unicodeGame = require_unicodeGame();
   function getRandomInt(max) {
     return 1 + Math.floor(Math.random() * max);
