@@ -31,6 +31,7 @@ npm run build
 npm run open (open index.html if on mac)
 ```
 
+Alternatively you can play it at this link https://piesize.itch.io/unicode
 
 ## UnicodeGame - Typing Trouble
 
