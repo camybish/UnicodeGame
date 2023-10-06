@@ -35,4 +35,12 @@ describe('Unicode Integration', () => {
 
         expect(document.querySelector(".newNumberDisplay").textContent).toBe("Current Number: 49")
     })
+    it('checks winState is shown properly', () => {
+        const uniCode = new unicodeGame(8)
+        const switch4 = document.querySelector("#switch4")
+        switch4.checked
+        render.callToggleByte(uniCode, switch4, 3)
+    
+        expect(document.querySelector(".victory").innerHTML).toBe("You win! &nbsp;&nbsp;&nbsp;<button></button>")
+    })
 })

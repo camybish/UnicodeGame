@@ -186,12 +186,6 @@
               return "chose a position within the bit range";
           }
         }
-        checkNumberGoal() {
-          return this.numberGoal;
-        }
-        checkNewNumber() {
-          return this.newNumber;
-        }
         callUpdater(index) {
           render.updater(this, index);
           render.dynamicNumbers(this);

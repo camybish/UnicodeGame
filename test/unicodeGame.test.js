@@ -43,6 +43,12 @@ describe('UnicodeGame', () => {
         expect(uniCode.submit()).toBe("Try again, you reached 4")
     })
 
+    it("toggle 8Bit outside range", () => {
+        const uniCode = new UnicodeGame(12);
+        
+        expect(uniCode.toggleByte(9)).toBe("chose a position within the bit range")
+    })
+
     it("toggle 8Bit to 180", () => {
         const uniCode = new UnicodeGame(180);
         uniCode.toggleByte(3);
@@ -52,6 +58,15 @@ describe('UnicodeGame', () => {
         
         expect(uniCode.submit()).toBe("Correct!")
     })
+
+    it("toggle 8Bit to 66", () => {
+        const uniCode = new UnicodeGame(66);
+        uniCode.toggleByte(2);
+        uniCode.toggleByte(7);
+        
+        expect(uniCode.submit()).toBe("Correct!")
+    })
+
 })
 
 describe('UniCode Web Functions', () => {
