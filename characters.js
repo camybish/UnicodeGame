@@ -1,5 +1,4 @@
-
-{
+const characters = {
     "uppercase" : {
         "A": 65,
         "B": 66,
@@ -56,6 +55,19 @@
         "x": 120,
         "y": 121,
         "z": 122
-    }
+    },
 
+    "symbols":{
+        "!":33,
+        "doubleQuote":34,
+        "#":35,
+        "$":36,
+        "%":37,
+        "&":38,
+        "singleQuote":39,
+        "(":40,
+        ")":41
+    }
 }
+
+module.exports = characters;
